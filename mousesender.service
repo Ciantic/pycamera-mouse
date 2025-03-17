@@ -1,0 +1,13 @@
+[Unit]
+Description=Run main2.py on startup
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/service/main.py
+Restart=always
+RestartSec=5
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target

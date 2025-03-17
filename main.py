@@ -1,15 +1,14 @@
+#!/usr/bin/env python3
+
 import argparse
 import logging
 from time import time, ctime, perf_counter, sleep
 from dataclasses import dataclass
-from threading import Thread
-import socket  # udp networking
-import struct  # binary packing
 from picamera2 import Picamera2, Preview, MappedArray  # Raspberry Pi camera
 from libcamera import Transform  # taking selfies, so used to mirror image
 import cv2  # OpenCV, for blob detection
 from scale_contour import scale_contour
-
+from mousesender import custom_sender_to_mouse
 
 @dataclass
 class text:
@@ -18,7 +17,6 @@ class text:
 
 
 print(text.intro)
-
 
 # parse command line arguments
 parser = argparse.ArgumentParser()
@@ -173,34 +171,10 @@ def philnav_stop():  # cleanup
     picam2.stop()
 
 
-# Set up UDP socket to receiving computer
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # datagrams over UDP
-sock_addr = (args.ip, args.port)
-
-# initialize networking
-# Read heartbeat datagrams over UDP
-sock_heartbeat = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-# Without a timeout, this script will "hang" if nothing is received
-sock_heartbeat.settimeout(60 * 10)
-sock_heartbeat.bind(("0.0.0.0", args.port + 1))  # Register our socket
-# https://pymotw.com/2/socket/multicast.html
-if args.ip.startswith("224"):  # join multicast group
-    group = socket.inet_aton(args.ip)
-    mreq = struct.pack("4sL", group, socket.INADDR_ANY)
-    sock_heartbeat.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
 
 def heartbeat_run():
-    while True:
-        try:
-            data, addr = sock_heartbeat.recvfrom(48)
-        except TimeoutError:
-            logging.info(f"{ctime()} - Waiting for a heartbeat from client...")
-            philnav_stop()
-            continue
-        else:
-            logging.info(f"{ctime()} - Received heartbeat from client.")
-            philnav_start()
+    pass
 
 
 now = time()
@@ -220,6 +194,9 @@ class phil:
     y = 0.0
     debug_num = 0
     keypoint = None  # for debugging inspection
+
+
+
 
 
 # This is where the Magic happens! The camera should pick up nothing but a white
@@ -291,16 +268,7 @@ def blobby(request):
                 # relative to its current position.
                 # https://github.com/opentrack/opentrack/issues/747
                 ms_time_spent = (perf_counter() - phil.frame_perf) * 1000
-                msg = struct.pack(
-                    "dddddd",
-                    x_diff,
-                    y_diff,
-                    0.0,
-                    0.0,
-                    phil.frame_started_at,
-                    ms_time_spent,
-                )
-                sock.sendto(msg, sock_addr)
+                custom_sender_to_mouse(x_diff, y_diff, phil.frame_started_at, ms_time_spent)
 
         # Log once per second
         if args.verbose and (phil.frame_num % int(args.fps) == 0):
@@ -322,11 +290,6 @@ def blobby(request):
 
 
 picam2.pre_callback = blobby
-
-if args.timeout == 0:
-    heartbeat_thread = Thread(target=heartbeat_run, daemon=True)
-    heartbeat_thread.start()
-
 # Run the loop until Ctrl-C or timeout
 try:
     t = args.timeout
@@ -336,6 +299,5 @@ try:
     sleep(t)  # turn off after a year
 except KeyboardInterrupt:
     pass
-
 philnav_stop()
 picam2.close()
