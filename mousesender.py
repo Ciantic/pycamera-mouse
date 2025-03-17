@@ -16,8 +16,6 @@ def smoother(q):
 mouse_hid_device = open("/dev/hidg1", "wb")
 
 def set_relative_mouse(x, y):
-    # if mouse_hid_device.closed:
-    #     mouse_hid_device = open("/dev/hidg1", "wb")
     mouse_hid_device.seek(0)
     buttons = 0x0
     vertical_wheel_delta = 0
@@ -32,7 +30,6 @@ def set_relative_mouse(x, y):
 
     mouse_hid_device.write(bytes(buf))
     mouse_hid_device.flush()
-    # mouse_hid_device.close()
 
 @dataclass
 class datacache:
