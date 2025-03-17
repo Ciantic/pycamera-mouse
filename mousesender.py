@@ -1,8 +1,7 @@
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
 from collections import deque  # for storing x, y time series
-from time import perf_counter, sleep, time, ctime
-from queue import Queue
+from time import time
 
 speed = 25
 smooth = 3
@@ -86,11 +85,7 @@ def custom_sender_to_mouse(x_diff, y_diff, time_cam, ms_opencv):
     x_new_diff = x_smooth * speed
     y_new_diff = y_smooth * speed * 1.25 
 
-
-    try:
-        set_relative_mouse(x_new_diff, y_new_diff)
-    except Exception as e:
-        print(f"Error writing to mouse_hid_device: {e}")
+    set_relative_mouse(x_new_diff, y_new_diff)
     # zerohidmouse.move(x_new_diff, y_new_diff)
     # zerohidmouse.move(int(x_new_diff) % 128, int(y_new_diff) % 128)
     # print(f"Mouse movement: {set_diff_x}, {set_diff_y}")
