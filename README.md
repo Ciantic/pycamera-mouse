@@ -17,3 +17,11 @@ sudo apt install python3-opencv
 ```
 
 Zero-HID (USB Gadget mode): https://github.com/thewh1teagle/zero-hid
+
+## Hardware
+
+Tested on Raspberry Pi 4 with the official camera module 3.
+
+Plug *only* the USB-C cord from PC to Raspberry Pi. Data and power are going in
+this one and same cable. USB mode does not work from Raspberry PI's A-type USB
+ports, only via the USB-C power port.
