@@ -1,5 +1,5 @@
 [Unit]
-Description=Run main2.py on startup
+Description=mousesender service
 After=network.target
 
 [Service]
