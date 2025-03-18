@@ -18,6 +18,24 @@ sudo apt install python3-opencv
 
 Zero-HID (USB Gadget mode): https://github.com/thewh1teagle/zero-hid
 
+2. Testing
+
+Sending the preview image over the network to a remote display:
+
+```
+DISPLAY=192.168.8.122:0 ./main.py --preview
+```
+
+For instance works with [vcxsrv in Windows](https://github.com/marchaesen/vcxsrv/)
+
+
+3. Installing as a auto starting service
+
+```
+sudo ./enable_service.sh
+```
+
+
 ## Hardware
 
 Tested on Raspberry Pi 4 with the official camera module 3.

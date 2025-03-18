@@ -3,11 +3,26 @@ from dataclasses import dataclass
 from collections import deque  # for storing x, y time series
 from time import time
 
-speed = 25
+# Original values by Phil
+# speed = 25
+# smooth = 3
+# smooth_long = smooth * 3 + 1
+# deadzone = 0.03
+# invert_x = -1
+# invert_y = -1
+# scaling_y = 1.25
+# scaling_x = 1
+
+speed = 40
 smooth = 3
-smooth_long = smooth*3+1
-now = time()
+smooth_long = smooth * 3 + 1
 deadzone = 0.03
+invert_x = -1
+invert_y = -1
+scaling_y = 1.25
+scaling_x = 1
+
+now = time()
 
 def smoother(q):
     avg = sum(q) / len(q)
@@ -20,6 +35,11 @@ def set_relative_mouse(x, y):
     buttons = 0x0
     vertical_wheel_delta = 0
     horizontal_wheel_delta = 0
+    if x >= 127 or x <= -127:
+        print(f"x size problem {x}")
+    if y >= 127 or y <= -127:
+        print(f"y size problem {y}")
+
     buf = [
             buttons,
             int(x) & 0xFF,
@@ -79,8 +99,8 @@ def custom_sender_to_mouse(x_diff, y_diff, time_cam, ms_opencv):
     if accel_avg > 0 and accel_avg < deadzone:
         return
 
-    x_new_diff = x_smooth * speed
-    y_new_diff = y_smooth * speed * 1.25 
+    x_new_diff = x_smooth * speed * scaling_x * invert_x
+    y_new_diff = y_smooth * speed * scaling_y * invert_y
 
     set_relative_mouse(x_new_diff, y_new_diff)
     # zerohidmouse.move(x_new_diff, y_new_diff)
