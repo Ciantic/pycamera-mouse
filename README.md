@@ -16,7 +16,14 @@ OpenCV:
 sudo apt install python3-opencv
 ```
 
-Zero-HID (USB Gadget mode): https://github.com/thewh1teagle/zero-hid
+Zero-HID (USB Gadget mode): https://github.com/thewh1teagle/zero-hid (no need for Python library, only the usb_gadget module):
+
+```
+git clone https://github.com/thewh1teagle/zero-hid
+cd zero-hid/usb_gadget
+sudo ./installer
+# reboot...
+```
 
 ### 2. Testing
 
