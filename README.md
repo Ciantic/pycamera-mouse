@@ -25,9 +25,16 @@ sudo ./installer
 # reboot...
 ```
 
-### 2. Testing
+### 2. Install and test this application
 
-Sending the preview image over the network to a remote display:
+This is made to work with Raspbian default home directory `/home/pi/`, but you can change the path in the `enable_service.sh` script:
+
+```
+git clone https://github.com/Ciantic/pycamera-mouse /home/pi/service/
+cd /home/pi/service/
+```
+
+Now to test, send the preview image over the network to a remote display:
 
 ```
 DISPLAY=192.168.8.122:0 ./main.py --preview
@@ -36,7 +43,7 @@ DISPLAY=192.168.8.122:0 ./main.py --preview
 For instance works with [vcxsrv in Windows](https://github.com/marchaesen/vcxsrv/)
 
 
-### 3. Installing as a auto starting service
+### 3. Installing as an auto starting systemd service
 
 ```
 sudo ./enable_service.sh
