@@ -1,0 +1,13 @@
+[Unit]
+Description=pikmbluetooth service
+After=bluetooth.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/service/bluetooth/server.py
+Restart=always
+RestartSec=5
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

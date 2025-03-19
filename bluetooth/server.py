@@ -119,8 +119,8 @@ class BtPiKeyboardMouseService(dbus.service.Object):
 
     @dbus.service.method('org.example.pikmservice', in_signature='yay')
     def send_keys(self, modifier_byte, keys):
-        print("Get send_keys request through dbus")
-        print("key msg: ", keys)
+        # print("Get send_keys request through dbus")
+        # print("key msg: ", keys)
         state = [ 0xA1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ]
         state[2] = int(modifier_byte)
         count = 4
@@ -128,20 +128,20 @@ class BtPiKeyboardMouseService(dbus.service.Object):
             if(count < 10):
                 state[count] = int(key_code)
             count += 1
-        print("keyboard state: ", state)
+        # print("keyboard state: ", state)
         self.device.send_string(state)
 
     @dbus.service.method('org.example.pikmservice', in_signature='yay')
     def send_mouse(self, modifier_byte, keys):
-        print("Get send_mouse request through dbus")
-        print("mouse msg: ", keys)
+        # print("Get send_mouse request through dbus")
+        # print("mouse msg: ", keys)
         state = [0xA1, 2, 0, 0, 0, 0]
         count = 2
         for key_code in keys:
             if(count < 6):
                 state[count] = int(key_code)
             count += 1
-        print("mouse state: ", state)
+        # print("mouse state: ", state)
         self.device.send_string(state)
 
 
