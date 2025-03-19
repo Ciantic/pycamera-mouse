@@ -90,6 +90,8 @@
         Digitizer tablet: 4th and 2nd bits 1
         Card reader: 4th and 3rd bits 1
         -->
+
+        <!-- This sould match `hciconfig hci0 class` in server.py -->
         <uint8 value="0xc0" /> 
     </attribute>
     <attribute id="0x0203"> <!-- HIDCountryCode -->

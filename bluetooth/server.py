@@ -71,7 +71,7 @@ class BtPiKeyboardMouseDevice:
         #        43219 9876 5432 1098 7654 3210
         #       0b0000_0000_0000_0101_1100_0000 = 0x5C0
         #
-        # Minor device class is also used in SDP record (see the XML)
+        # Minor device class is also used in SDP record HIDDeviceSubclass field
         os.system("hciconfig hci0 class 0x0005C0")
 
     def read_sdp_service_record(self):
