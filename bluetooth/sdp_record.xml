@@ -2,289 +2,289 @@
 <!-- https://www.bluetooth.com/specifications/specs/hid-1-1-1/ -->
 
 <record>
-	<attribute id="0x0001"> <!-- ServiceClassIDList -->
-		<sequence>
-			<uuid value="0x1124" /> <!-- HID, Note 1 -->
-		</sequence>
-	</attribute>
-	<attribute id="0x0004"> <!-- ProtocolDescriptorList -->
-		<sequence>
-			<sequence>
-				<uuid value="0x0100" /> <!-- L2CAP: Logical Link Control and Adaptation Protocol, a Bluetooth protocol. -->
-				<uint16 value="0x0011" /> <!-- PSM: Protocol/Service Multiplexer over HIDP -->
-			</sequence>
-			<sequence>
-				<uuid value="0x0011" /> <!-- HID, Note 1 -->
-			</sequence>
-		</sequence>
-	</attribute>
-	<attribute id="0x0005"> <!-- TODO: what -->
-		<sequence>
-			<uuid value="0x1002" /> <!-- TODO: what -->
-		</sequence>
-	</attribute>
-	<attribute id="0x0006"> <!-- LanguageBaseAttributeIDList: Specifies the languages supported by the service. -->
-		<sequence>
-			<uint16 value="0x656e" /> <!-- “en” (English) -->
-			<uint16 value="0x006a" /> <!-- UTF-8 encoding-->
-			<uint16 value="0x0100" /> <!-- PrimaryLanguageBaseID -->
-		</sequence>
-	</attribute>
-	<attribute id="0x0009"> <!-- BluetoothProfileDescriptorList -->
-		<sequence>
-			<sequence>
-				<uuid value="0x1124" /> <!-- HID, Note 1 -->
-				<uint16 value="0x0100" /> <!-- Version 1.0 -->
-			</sequence>
-		</sequence>
-	</attribute>
-	<attribute id="0x000d"> <!-- AdditionalProtocolDescriptorLists:  Provides more protocol stack information -->
-		<sequence>
-			<sequence>
-				<sequence>
-					<uuid value="0x0100" /> <!-- L2CAP -->
-					<uint16 value="0x0013" /> <!-- TODO: PSM? -->
-				</sequence>
-				<sequence>
-					<uuid value="0x0011" /> <!-- HID, Note 1 -->
-				</sequence>
-			</sequence>
-		</sequence>
-	</attribute>
-	<attribute id="0x0100"> <!-- Service name -->
-		<text value="Raspberry Pi Virtual Keyboard" />
-	</attribute>
-	<attribute id="0x0101"> <!-- Service Description -->
-		<text value="USB > BT Keyboard/Mouse" />
-	</attribute>
-	<attribute id="0x0102"> <!-- Provider Name -->
-		<text value="Raspberry Pi" />
-	</attribute>
-	<attribute id="0x0200"> <!-- HIDDeviceReleaseNumber (DEPRECATED IN 1.1.1 document) -->
-		<!-- "If this attribute is included, it shall be identical to the value
-		of the Version Attribute included in the Device Identification Profile
-		service record. Bluetooth HID Hosts conforming to this specification
-		should not use this value." "-->
-		<uint16 value="0x0100" /> 
-	</attribute>
-	<attribute id="0x0201"> <!-- HIDParserVersion -->
-		<uint16 value="0x0111" /> <!-- Keyboard and Mouse Protocol -->
-	</attribute>
-	<attribute id="0x0202"> <!-- HIDDeviceSubclass -->
-		<!-- 
-		HIDDeviceSubclass attribute is an 8-bit integer which identifies the
-		type of Bluetooth HID device (e.g. keyboard, mouse, joystick, gamepad,
-		remote control, sensing device, etc.). Bits 7-2 of the HIDDeviceSubclass
-		contain a 6 bit Minor Device Class value (defined in the Bluetooth
-		Assigned Numbers [9]). Bits 1 and 0 shall be set to zero.
+    <attribute id="0x0001"> <!-- ServiceClassIDList -->
+        <sequence>
+            <uuid value="0x1124" /> <!-- HID, Note 1 -->
+        </sequence>
+    </attribute>
+    <attribute id="0x0004"> <!-- ProtocolDescriptorList -->
+        <sequence>
+            <sequence>
+                <uuid value="0x0100" /> <!-- L2CAP: Logical Link Control and Adaptation Protocol, a Bluetooth protocol. -->
+                <uint16 value="0x0011" /> <!-- PSM: Protocol/Service Multiplexer over HIDP -->
+            </sequence>
+            <sequence>
+                <uuid value="0x0011" /> <!-- HID, Note 1 -->
+            </sequence>
+        </sequence>
+    </attribute>
+    <attribute id="0x0005"> <!-- TODO: what -->
+        <sequence>
+            <uuid value="0x1002" /> <!-- TODO: what -->
+        </sequence>
+    </attribute>
+    <attribute id="0x0006"> <!-- LanguageBaseAttributeIDList: Specifies the languages supported by the service. -->
+        <sequence>
+            <uint16 value="0x656e" /> <!-- “en” (English) -->
+            <uint16 value="0x006a" /> <!-- UTF-8 encoding-->
+            <uint16 value="0x0100" /> <!-- PrimaryLanguageBaseID -->
+        </sequence>
+    </attribute>
+    <attribute id="0x0009"> <!-- BluetoothProfileDescriptorList -->
+        <sequence>
+            <sequence>
+                <uuid value="0x1124" /> <!-- HID, Note 1 -->
+                <uint16 value="0x0100" /> <!-- Version 1.0 -->
+            </sequence>
+        </sequence>
+    </attribute>
+    <attribute id="0x000d"> <!-- AdditionalProtocolDescriptorLists:  Provides more protocol stack information -->
+        <sequence>
+            <sequence>
+                <sequence>
+                    <uuid value="0x0100" /> <!-- L2CAP -->
+                    <uint16 value="0x0013" /> <!-- TODO: PSM? -->
+                </sequence>
+                <sequence>
+                    <uuid value="0x0011" /> <!-- HID, Note 1 -->
+                </sequence>
+            </sequence>
+        </sequence>
+    </attribute>
+    <attribute id="0x0100"> <!-- Service name -->
+        <text value="Raspberry Pi Virtual Keyboard" />
+    </attribute>
+    <attribute id="0x0101"> <!-- Service Description -->
+        <text value="USB > BT Keyboard/Mouse" />
+    </attribute>
+    <attribute id="0x0102"> <!-- Provider Name -->
+        <text value="Raspberry Pi" />
+    </attribute>
+    <attribute id="0x0200"> <!-- HIDDeviceReleaseNumber (DEPRECATED IN 1.1.1 document) -->
+        <!-- "If this attribute is included, it shall be identical to the value
+        of the Version Attribute included in the Device Identification Profile
+        service record. Bluetooth HID Hosts conforming to this specification
+        should not use this value." "-->
+        <uint16 value="0x0100" /> 
+    </attribute>
+    <attribute id="0x0201"> <!-- HIDParserVersion -->
+        <uint16 value="0x0111" /> <!-- Keyboard and Mouse Protocol -->
+    </attribute>
+    <attribute id="0x0202"> <!-- HIDDeviceSubclass -->
+        <!-- 
+        HIDDeviceSubclass attribute is an 8-bit integer which identifies the
+        type of Bluetooth HID device (e.g. keyboard, mouse, joystick, gamepad,
+        remote control, sensing device, etc.). Bits 7-2 of the HIDDeviceSubclass
+        contain a 6 bit Minor Device Class value (defined in the Bluetooth
+        Assigned Numbers [9]). Bits 1 and 0 shall be set to zero.
 
-		Keyboard: 6th bit on
-		Pointing device: 7th bit 1
-		Combo Keyboard/pointing device: 6th and 7th bits 1
+        Keyboard: 6th bit on
+        Pointing device: 7th bit 1
+        Combo Keyboard/pointing device: 6th and 7th bits 1
 
-		Uncategorized device: 5,4,3,2 bith 0
-		Joystick: 2nd bit 1
-		Gamepad: 3rd bit 1
-		Remote control: 3rd and 2nd bits 1
-		Sensing device: 4th bit 1
-		Digitizer tablet: 4th and 2nd bits 1
-		Card reader: 4th and 3rd bits 1
-		-->
-		<uint8 value="0x40" /> <!-- TODO: should this be 0x60?-->
-	</attribute>
-	<attribute id="0x0203"> <!-- HIDCountryCode -->
-		<uint8 value="0x00" /> 
-	</attribute>
-	<attribute id="0x0204"> <!-- HIDVirtualCable -->
-		<boolean value="false" /> 
-	</attribute>
-	<attribute id="0x0205"> <!-- HIDReconnectInitiate -->
-		<!--  
-		A Bluetooth HID device which declares the HIDReconnectInitiate attribute
-		with a value of TRUE may wait until it has data to deliver before
-		initiating a reconnect. This characteristic is referred to as “data
-		driven reconnection”.
+        Uncategorized device: 5,4,3,2 bith 0
+        Joystick: 2nd bit 1
+        Gamepad: 3rd bit 1
+        Remote control: 3rd and 2nd bits 1
+        Sensing device: 4th bit 1
+        Digitizer tablet: 4th and 2nd bits 1
+        Card reader: 4th and 3rd bits 1
+        -->
+        <uint8 value="0x40" /> <!-- TODO: should this be 0x60?-->
+    </attribute>
+    <attribute id="0x0203"> <!-- HIDCountryCode -->
+        <uint8 value="0x00" /> 
+    </attribute>
+    <attribute id="0x0204"> <!-- HIDVirtualCable -->
+        <boolean value="false" /> 
+    </attribute>
+    <attribute id="0x0205"> <!-- HIDReconnectInitiate -->
+        <!--  
+        A Bluetooth HID device which declares the HIDReconnectInitiate attribute
+        with a value of TRUE may wait until it has data to deliver before
+        initiating a reconnect. This characteristic is referred to as “data
+        driven reconnection”.
 
-		A Bluetooth HID device shall not immediately reconnect if the connection
-		is dropped at the explicit request of the Bluetooth Host Device (via
-		LMP_detach or disconnection of the HID L2CAP channels) unless the device
-		generates new data, for example due to user activity.
+        A Bluetooth HID device shall not immediately reconnect if the connection
+        is dropped at the explicit request of the Bluetooth Host Device (via
+        LMP_detach or disconnection of the HID L2CAP channels) unless the device
+        generates new data, for example due to user activity.
 
-		A Bluetooth HID device which declares the HIDBootDevice attribute with a
-		value of TRUE shall also set the HIDReconnectInitiate attribute to TRUE.
-		See section 5.3.4.12. -->
+        A Bluetooth HID device which declares the HIDBootDevice attribute with a
+        value of TRUE shall also set the HIDReconnectInitiate attribute to TRUE.
+        See section 5.3.4.12. -->
 
-		<boolean value="false" />
-	</attribute>
-	<attribute id="0x0206"> <!-- HIDDescriptorList -->
-		<sequence>
-			<sequence>
-				<!-- 0x22 = Report -->
-				<!-- 0x23 = Physical -->
-				<uint8 value="0x22" /> 
+        <boolean value="false" />
+    </attribute>
+    <attribute id="0x0206"> <!-- HIDDescriptorList -->
+        <sequence>
+            <sequence>
+                <!-- 0x22 = Report -->
+                <!-- 0x23 = Physical -->
+                <uint8 value="0x22" /> 
 
-				<!-- Keyboard, Mouse, and Media keys: -->
-				<text encoding="hex" value="05010906a101850175019508050719e029e715002501810295017508810395057501050819012905910295017503910395067508150026ff000507190029ff8100c005010902A10185020901A1000509190129031500250175019503810275059501810105010930093109381581257F750895038106C0C0050c0901a1018503150025017501950b0a23020a21020ab10109b809b609cd09b509e209ea09e9093081029501750d8103c0"/>
+                <!-- Keyboard, Mouse, and Media keys: -->
+                <text encoding="hex" value="05010906a101850175019508050719e029e715002501810295017508810395057501050819012905910295017503910395067508150026ff000507190029ff8100c005010902A10185020901A1000509190129031500250175019503810275059501810105010930093109381581257F750895038106C0C0050c0901a1018503150025017501950b0a23020a21020ab10109b809b609cd09b509e209ea09e9093081029501750d8103c0"/>
 
-				<!--
-				https://eleccelerator.com/usbdescreqparser/
+                <!--
+                https://eleccelerator.com/usbdescreqparser/
 
-					0x05, 0x01,        // Usage Page (Generic Desktop Ctrls) -  Defines the category of usages
-					0x09, 0x06,        // Usage (Keyboard) - Specifies the type of device
-					0xA1, 0x01,        // Collection (Application) -  Defines a logical grouping of items
-					0x85, 0x01,        //   Report ID (1) -  Identifies the report that contains this data. Important for handling different data types
-					0x75, 0x01,        //   Report Size (1) - Size of a single field in bits
-					0x95, 0x08,        //   Report Count (8) - Number of fields of specified size (1-bit fields in this case)
-					0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
-					0x19, 0xE0,        //   Usage Minimum (0xE0) -  Start of the range of usages
-					0x29, 0xE7,        //   Usage Maximum (0xE7) - End of range (Modifier keys: Left Ctrl, Left Shift, etc.)
-					0x15, 0x00,        //   Logical Minimum (0) - Minimum value that can be reported
-					0x25, 0x01,        //   Logical Maximum (1) - Maximum value (1 for a boolean, indicating key is pressed or not)
-					0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position) -  Defines the input (data from the device) properties.
-					0x95, 0x01,        //   Report Count (1)
-					0x75, 0x08,        //   Report Size (8)
-					0x81, 0x03,        //   Input (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0x95, 0x05,        //   Report Count (5)
-					0x75, 0x01,        //   Report Size (1)
-					0x05, 0x08,        //   Usage Page (LEDs)
-					0x19, 0x01,        //   Usage Minimum (Num Lock)
-					0x29, 0x05,        //   Usage Maximum (Kana)
-					0x91, 0x02,        //   Output (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
-					0x95, 0x01,        //   Report Count (1)
-					0x75, 0x03,        //   Report Size (3)
-					0x91, 0x03,        //   Output (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
-					0x95, 0x06,        //   Report Count (6)
-					0x75, 0x08,        //   Report Size (8)
-					0x15, 0x00,        //   Logical Minimum (0)
-					0x26, 0xFF, 0x00,  //   Logical Maximum (255)
-					0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
-					0x19, 0x00,        //   Usage Minimum (0x00)
-					0x29, 0xFF,        //   Usage Maximum (0xFF)
-					0x81, 0x00,        //   Input (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0xC0,              // End Collection
+                    0x05, 0x01,        // Usage Page (Generic Desktop Ctrls) -  Defines the category of usages
+                    0x09, 0x06,        // Usage (Keyboard) - Specifies the type of device
+                    0xA1, 0x01,        // Collection (Application) -  Defines a logical grouping of items
+                    0x85, 0x01,        //   Report ID (1) -  Identifies the report that contains this data. Important for handling different data types
+                    0x75, 0x01,        //   Report Size (1) - Size of a single field in bits
+                    0x95, 0x08,        //   Report Count (8) - Number of fields of specified size (1-bit fields in this case)
+                    0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+                    0x19, 0xE0,        //   Usage Minimum (0xE0) -  Start of the range of usages
+                    0x29, 0xE7,        //   Usage Maximum (0xE7) - End of range (Modifier keys: Left Ctrl, Left Shift, etc.)
+                    0x15, 0x00,        //   Logical Minimum (0) - Minimum value that can be reported
+                    0x25, 0x01,        //   Logical Maximum (1) - Maximum value (1 for a boolean, indicating key is pressed or not)
+                    0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position) -  Defines the input (data from the device) properties.
+                    0x95, 0x01,        //   Report Count (1)
+                    0x75, 0x08,        //   Report Size (8)
+                    0x81, 0x03,        //   Input (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0x95, 0x05,        //   Report Count (5)
+                    0x75, 0x01,        //   Report Size (1)
+                    0x05, 0x08,        //   Usage Page (LEDs)
+                    0x19, 0x01,        //   Usage Minimum (Num Lock)
+                    0x29, 0x05,        //   Usage Maximum (Kana)
+                    0x91, 0x02,        //   Output (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
+                    0x95, 0x01,        //   Report Count (1)
+                    0x75, 0x03,        //   Report Size (3)
+                    0x91, 0x03,        //   Output (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position,Non-volatile)
+                    0x95, 0x06,        //   Report Count (6)
+                    0x75, 0x08,        //   Report Size (8)
+                    0x15, 0x00,        //   Logical Minimum (0)
+                    0x26, 0xFF, 0x00,  //   Logical Maximum (255)
+                    0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+                    0x19, 0x00,        //   Usage Minimum (0x00)
+                    0x29, 0xFF,        //   Usage Maximum (0xFF)
+                    0x81, 0x00,        //   Input (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0xC0,              // End Collection
 0x05, 0x01,        // Usage Page (Generic Desktop Ctrls)
-					0x09, 0x02,        // Usage (Mouse)
-					0xA1, 0x01,        // Collection (Application)
-					0x85, 0x02,        //   Report ID (2)
-					0x09, 0x01,        //   Usage (Pointer)
-					0xA1, 0x00,        //   Collection (Physical)
-					0x05, 0x09,        //     Usage Page (Button)
-					0x19, 0x01,        //     Usage Minimum (0x01)
-					0x29, 0x03,        //     Usage Maximum (0x03)
-					0x15, 0x00,        //     Logical Minimum (0)
-					0x25, 0x01,        //     Logical Maximum (1)
-					0x75, 0x01,        //     Report Size (1)
-					0x95, 0x03,        //     Report Count (3)
-					0x81, 0x02,        //     Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0x75, 0x05,        //     Report Size (5)
-					0x95, 0x01,        //     Report Count (1)
-					0x81, 0x01,        //     Input (Const,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0x05, 0x01,        //     Usage Page (Generic Desktop Ctrls)
-					0x09, 0x30,        //     Usage (X)
-					0x09, 0x31,        //     Usage (Y)
-					0x09, 0x38,        //     Usage (Wheel)
-					0x15, 0x81,        //     Logical Minimum (-127)
-					0x25, 0x7F,        //     Logical Maximum (127)
-					0x75, 0x08,        //     Report Size (8)
-					0x95, 0x03,        //     Report Count (3)
-					0x81, 0x06,        //     Input (Data,Var,Rel,No Wrap,Linear,Preferred State,No Null Position)
-					0xC0,              //   End Collection
-					0xC0,              // End Collection
-					0x05, 0x0C,        // Usage Page (Consumer)
-					0x09, 0x01,        // Usage (Consumer Control)
-					0xA1, 0x01,        // Collection (Application)
-					0x85, 0x03,        //   Report ID (3)
-					0x15, 0x00,        //   Logical Minimum (0)
-					0x25, 0x01,        //   Logical Maximum (1)
-					0x75, 0x01,        //   Report Size (1)
-					0x95, 0x0B,        //   Report Count (11)
-					0x0A, 0x23, 0x02,  //   Usage (AC Home)
-					0x0A, 0x21, 0x02,  //   Usage (AC Search)
-					0x0A, 0xB1, 0x01,  //   Usage (AL Screen Saver)
-					0x09, 0xB8,        //   Usage (Eject)
-					0x09, 0xB6,        //   Usage (Scan Previous Track)
-					0x09, 0xCD,        //   Usage (Play/Pause)
-					0x09, 0xB5,        //   Usage (Scan Next Track)
-					0x09, 0xE2,        //   Usage (Mute)
-					0x09, 0xEA,        //   Usage (Volume Decrement)
-					0x09, 0xE9,        //   Usage (Volume Increment)
-					0x09, 0x30,        //   Usage (Power)
-					0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0x95, 0x01,        //   Report Count (1)
-					0x75, 0x0D,        //   Report Size (13)
-					0x81, 0x03,        //   Input (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
-					0xC0,              // End Collection
+                    0x09, 0x02,        // Usage (Mouse)
+                    0xA1, 0x01,        // Collection (Application)
+                    0x85, 0x02,        //   Report ID (2)
+                    0x09, 0x01,        //   Usage (Pointer)
+                    0xA1, 0x00,        //   Collection (Physical)
+                    0x05, 0x09,        //     Usage Page (Button)
+                    0x19, 0x01,        //     Usage Minimum (0x01)
+                    0x29, 0x03,        //     Usage Maximum (0x03)
+                    0x15, 0x00,        //     Logical Minimum (0)
+                    0x25, 0x01,        //     Logical Maximum (1)
+                    0x75, 0x01,        //     Report Size (1)
+                    0x95, 0x03,        //     Report Count (3)
+                    0x81, 0x02,        //     Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0x75, 0x05,        //     Report Size (5)
+                    0x95, 0x01,        //     Report Count (1)
+                    0x81, 0x01,        //     Input (Const,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0x05, 0x01,        //     Usage Page (Generic Desktop Ctrls)
+                    0x09, 0x30,        //     Usage (X)
+                    0x09, 0x31,        //     Usage (Y)
+                    0x09, 0x38,        //     Usage (Wheel)
+                    0x15, 0x81,        //     Logical Minimum (-127)
+                    0x25, 0x7F,        //     Logical Maximum (127)
+                    0x75, 0x08,        //     Report Size (8)
+                    0x95, 0x03,        //     Report Count (3)
+                    0x81, 0x06,        //     Input (Data,Var,Rel,No Wrap,Linear,Preferred State,No Null Position)
+                    0xC0,              //   End Collection
+                    0xC0,              // End Collection
+                    0x05, 0x0C,        // Usage Page (Consumer)
+                    0x09, 0x01,        // Usage (Consumer Control)
+                    0xA1, 0x01,        // Collection (Application)
+                    0x85, 0x03,        //   Report ID (3)
+                    0x15, 0x00,        //   Logical Minimum (0)
+                    0x25, 0x01,        //   Logical Maximum (1)
+                    0x75, 0x01,        //   Report Size (1)
+                    0x95, 0x0B,        //   Report Count (11)
+                    0x0A, 0x23, 0x02,  //   Usage (AC Home)
+                    0x0A, 0x21, 0x02,  //   Usage (AC Search)
+                    0x0A, 0xB1, 0x01,  //   Usage (AL Screen Saver)
+                    0x09, 0xB8,        //   Usage (Eject)
+                    0x09, 0xB6,        //   Usage (Scan Previous Track)
+                    0x09, 0xCD,        //   Usage (Play/Pause)
+                    0x09, 0xB5,        //   Usage (Scan Next Track)
+                    0x09, 0xE2,        //   Usage (Mute)
+                    0x09, 0xEA,        //   Usage (Volume Decrement)
+                    0x09, 0xE9,        //   Usage (Volume Increment)
+                    0x09, 0x30,        //   Usage (Power)
+                    0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0x95, 0x01,        //   Report Count (1)
+                    0x75, 0x0D,        //   Report Size (13)
+                    0x81, 0x03,        //   Input (Const,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+                    0xC0,              // End Collection
 
 
-					// 170 bytes
-				-->
-			</sequence>
-		</sequence>
-	</attribute>
-	<attribute id="0x0207"> <!-- HIDLANGIDBaseList -->
-		<sequence>
-			<sequence>
-				<uint16 value="0x0409" /> <!-- Language = English (United States) -->
-				<uint16 value="0x0100" /> <!-- Bluetooth String Offset-->
-			</sequence>
-		</sequence>
-	</attribute>
-	<attribute id="0x020b"> <!-- HIDProfileVersion: DEPRECATED -->
-		<!-- 
-		This attribute is deprecated and should not be included in the HID SDP
-		service record as it is redundant with the version number included in
-		the BluetoothProfileDescriptorList, Bluetooth HID Hosts conforming to
-		this specification shall not use this value.
+                    // 170 bytes
+                -->
+            </sequence>
+        </sequence>
+    </attribute>
+    <attribute id="0x0207"> <!-- HIDLANGIDBaseList -->
+        <sequence>
+            <sequence>
+                <uint16 value="0x0409" /> <!-- Language = English (United States) -->
+                <uint16 value="0x0100" /> <!-- Bluetooth String Offset-->
+            </sequence>
+        </sequence>
+    </attribute>
+    <attribute id="0x020b"> <!-- HIDProfileVersion: DEPRECATED -->
+        <!-- 
+        This attribute is deprecated and should not be included in the HID SDP
+        service record as it is redundant with the version number included in
+        the BluetoothProfileDescriptorList, Bluetooth HID Hosts conforming to
+        this specification shall not use this value.
 
         If the HIDProfileVersion number is included in the HID service record,
         it shall be identical in value to the second element in the
         BluetoothProfileDescriptorList attribute.
         -->
-		<uint16 value="0x0100" />
-	</attribute>
-	<attribute id="0x020c"> <!-- HIDSupervisionTimeout -->
-		<!-- 
-		The Bluetooth HID Host can use this value to override the default HID
-		supervision timeout setting. This attribute is optional for the
-		Bluetooth HID device and Bluetooth HID Host. If it is not declared by
-		the Bluetooth HID device, the Bluetooth HID Host should set the timeout
-		to a value of 2 seconds. 
-		-->
-		<uint16 value="0x0c80" />
-	</attribute>
-	<attribute id="0x020d"> <!-- HIDNormallyConnectable -->
-		<!-- 
-		HIDNormallyConnectable is an optional Boolean attribute that specifies
-		whether or not a Bluetooth HID device is normally in Page Scan mode when
-		no connection is active. If the Bluetooth HID device declares this
-		attribute and sets it to TRUE, it shall remain connectable in order to
-		respond to a page from the Bluetooth HID Host. If the Bluetooth HID
-		device does not declare this attribute or declares this attribute FALSE,
-		it may completely shut down its Bluetooth radio when there is no active
-		connection.
-		-->
+        <uint16 value="0x0100" />
+    </attribute>
+    <attribute id="0x020c"> <!-- HIDSupervisionTimeout -->
+        <!-- 
+        The Bluetooth HID Host can use this value to override the default HID
+        supervision timeout setting. This attribute is optional for the
+        Bluetooth HID device and Bluetooth HID Host. If it is not declared by
+        the Bluetooth HID device, the Bluetooth HID Host should set the timeout
+        to a value of 2 seconds. 
+        -->
+        <uint16 value="0x0c80" />
+    </attribute>
+    <attribute id="0x020d"> <!-- HIDNormallyConnectable -->
+        <!-- 
+        HIDNormallyConnectable is an optional Boolean attribute that specifies
+        whether or not a Bluetooth HID device is normally in Page Scan mode when
+        no connection is active. If the Bluetooth HID device declares this
+        attribute and sets it to TRUE, it shall remain connectable in order to
+        respond to a page from the Bluetooth HID Host. If the Bluetooth HID
+        device does not declare this attribute or declares this attribute FALSE,
+        it may completely shut down its Bluetooth radio when there is no active
+        connection.
+        -->
 
-		<boolean value="true" /> 
-	</attribute>
-	<attribute id="0x020e"> <!-- HIDBootDevice -->
-		<!-- 
-		HIDBootDevice is an 8-bit Boolean value that when TRUE indicates whether
-		the Bluetooth HID device supports Boot Protocol mode and by inference
-		the Set_Protocol and Get_Protocol commands. This attribute shall be
-		included in the HID service record and is present in case future fixed
-		format reports are defined that cannot be represented in the Class of
-		Device field in the Bluetooth FHS packet.
+        <boolean value="true" /> 
+    </attribute>
+    <attribute id="0x020e"> <!-- HIDBootDevice -->
+        <!-- 
+        HIDBootDevice is an 8-bit Boolean value that when TRUE indicates whether
+        the Bluetooth HID device supports Boot Protocol mode and by inference
+        the Set_Protocol and Get_Protocol commands. This attribute shall be
+        included in the HID service record and is present in case future fixed
+        format reports are defined that cannot be represented in the Class of
+        Device field in the Bluetooth FHS packet.
 
-		A Bluetooth HID device which declares the HIDBootDevice attribute with a
-		value of TRUE shall also set the HIDReconnectInitiate and
-		HIDVirtualCable attributes to TRUE.
-		-->
-		<boolean value="false" />
-	</attribute>
-	<attribute id="0x020f"> <!-- HIDSSRHostMaxLatency -->
-		<uint16 value="0x0640" />
-	</attribute>
-	<attribute id="0x0210"> <!-- HIDSSRHostMinTimeout -->
-		<uint16 value="0x0320" />
-	</attribute>
+        A Bluetooth HID device which declares the HIDBootDevice attribute with a
+        value of TRUE shall also set the HIDReconnectInitiate and
+        HIDVirtualCable attributes to TRUE.
+        -->
+        <boolean value="false" />
+    </attribute>
+    <attribute id="0x020f"> <!-- HIDSSRHostMaxLatency -->
+        <uint16 value="0x0640" />
+    </attribute>
+    <attribute id="0x0210"> <!-- HIDSSRHostMinTimeout -->
+        <uint16 value="0x0320" />
+    </attribute>
 </record>
