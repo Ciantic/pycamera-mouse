@@ -34,22 +34,22 @@ class BtPiKeyboardMouseDevice:
         self.init_bt_device()
         self.init_bluez_profile()
 
-    # configure the bluetooth hardware device
     def init_bt_device(self):
+        # https://linux.die.net/man/8/hciconfig
+
         print("3. Configuring Device name " + BtPiKeyboardMouseDevice.MY_DEV_NAME)
-        # set the device class to a keybord and set the name
         os.system("hciconfig hci0 up")
         os.system(f"hciconfig hci0 name '{BtPiKeyboardMouseDevice.MY_DEV_NAME}'")
-        # make the device discoverable
-        os.system("hciconfig hci0 piscan")
+        os.system("hciconfig hci0 piscan") # Enable page and inquiry scan.
 
-    # set up a bluez profile to advertise device capabilities from a loaded service record
     def init_bluez_profile(self):
         print("4. Configuring Bluez Profile")
+
+        # https://github.com/bluez/bluez/blob/master/doc/org.bluez.ProfileManager.rst
+        #
         # setup profile options
         service_record = self.read_sdp_service_record()
         opts = {"AutoConnect": True, "ServiceRecord": service_record}
-        # retrieve a proxy for the bluez profile interface
         bus = dbus.SystemBus()
         manager = dbus.Interface(
             bus.get_object("org.bluez", "/org/bluez"), "org.bluez.ProfileManager1"
@@ -70,10 +70,10 @@ class BtPiKeyboardMouseDevice:
         #
         #        43219 9876 5432 1098 7654 3210
         #       0b0000_0000_0000_0101_1100_0000 = 0x5C0
-
+        #
+        # Minor device class is also used in SDP record (see the XML)
         os.system("hciconfig hci0 class 0x0005C0")
 
-    # read and return an sdp record from a file
     def read_sdp_service_record(self):
         print("5. Reading service record")
         try:
@@ -82,7 +82,6 @@ class BtPiKeyboardMouseDevice:
             sys.exit("Could not open the sdp record. Exiting...")
         return fh.read()
 
-    # listen for incoming client connections
     def listen(self):
         print("\033[0;33m7. Waiting for connections\033[0m")
         self.scontrol = socket.socket(
@@ -114,7 +113,6 @@ class BtPiKeyboardMouseDevice:
             % cinfo[0]
         )
 
-    # send a string to the bluetooth host machine
     def send_string(self, message):
         try:
             self.cinterrupt.send(bytes(message))
@@ -126,12 +124,9 @@ class BtPiKeyboardMouseService(dbus.service.Object):
 
     def __init__(self):
         print("1. Setting up service")
-        # set up as a dbus service
         bus_name = dbus.service.BusName("org.example.pikmservice", bus=dbus.SystemBus())
         dbus.service.Object.__init__(self, bus_name, "/org/example/pikmservice")
-        # create and setup our device
         self.device = BtPiKeyboardMouseDevice()
-        # start listening for connections
         self.device.listen()
 
     @dbus.service.method("org.example.pikmservice", in_signature="yay")
