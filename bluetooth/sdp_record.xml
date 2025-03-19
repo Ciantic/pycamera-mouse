@@ -38,7 +38,7 @@
             </sequence>
         </sequence>
     </attribute>
-    <attribute id="0x000d"> <!-- AdditionalProtocolDescriptorLists:  Provides more protocol stack information -->
+    <attribute id="0x000d"> <!-- AdditionalProtocolDescriptorLists -->
         <sequence>
             <sequence>
                 <sequence>
@@ -68,7 +68,7 @@
         <uint16 value="0x0100" /> 
     </attribute>
     <attribute id="0x0201"> <!-- HIDParserVersion -->
-        <uint16 value="0x0111" /> <!-- Keyboard and Mouse Protocol -->
+        <uint16 value="0x0111" /> 
     </attribute>
     <attribute id="0x0202"> <!-- HIDDeviceSubclass -->
         <!-- 
@@ -90,7 +90,7 @@
         Digitizer tablet: 4th and 2nd bits 1
         Card reader: 4th and 3rd bits 1
         -->
-        <uint8 value="0x40" /> <!-- TODO: should this be 0x60?-->
+        <uint8 value="0x60" /> 
     </attribute>
     <attribute id="0x0203"> <!-- HIDCountryCode -->
         <uint8 value="0x00" /> 
