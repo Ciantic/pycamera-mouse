@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# Install the service
+# Install the dbus service access control file
 cp org.example.pikmservice.conf /etc/dbus-1/system.d/
 
-if [ ! -L /etc/systemd/system/pikmbluetooth.service ]; then
-    ln -s /home/pi/service/bluetooth/pikmbluetooth.service /etc/systemd/system/pikmbluetooth.service
-fi
-systemctl enable pikmbluetooth.service
-systemctl start pikmbluetooth.service
-# sudo btmgmt power off
-btmgmt discov on
-btmgmt connectable on
-btmgmt pairable on
-btmgmt power on
+# Ensure bluetooth service is not using the input plugin
+sudo sed -i '/^ExecStart=/ {/--noplugin=input/! s/$/ --noplugin=input/}' /etc/systemd/system/bluetooth.target.wants/bluetooth.service
 
-# = NoInputNoOutput, pairs automatically without user interaction
-btmgmt io-cap 3 
+systemctl enable ./pikmbluetoothagent.service
+systemctl enable ./pikmbluetooth.service
+systemctl start pikmbluetooth.service
+systemctl start pikmbluetoothagent.service

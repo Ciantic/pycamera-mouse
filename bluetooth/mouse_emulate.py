@@ -19,7 +19,7 @@ class MouseClient():
 		try:
 			self.iface.send_mouse(0, bytes(self.state))
 		except OSError as err:
-			error(err)
+			print("Error", err)
 
 if __name__ == "__main__":
 

@@ -10,7 +10,6 @@ import socket
 from gi.repository import GLib
 from dbus.mainloop.glib import DBusGMainLoop
 import logging
-from logging import error
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -62,7 +61,7 @@ class BtPiKeyboardMouseDevice:
         # Major service class: bits 13-23
         # Major device class:  bits 8-12
         # Minor device class:  bits 2-7
-        # 
+        #
         # Mouse + Keyboard:
         # Major service class: zeros
         # Major device class: 10th bit 1, 8th bit 1 = Peripheral (mouse, joystick, keyboard, ...)
@@ -73,6 +72,12 @@ class BtPiKeyboardMouseDevice:
         #
         # Minor device class is also used in SDP record HIDDeviceSubclass field
         os.system("hciconfig hci0 class 0x0005C0")
+
+        # Turn on
+        os.system("btmgmt discov on")
+        os.system("btmgmt connectable on")
+        os.system("btmgmt pairable on")
+        os.system("btmgmt power on")
 
     def read_sdp_service_record(self):
         print("5. Reading service record")
@@ -117,9 +122,12 @@ class BtPiKeyboardMouseDevice:
         try:
             self.cinterrupt.send(bytes(message))
         except OSError as err:
-            error(err)
+            logging.error(err)
 
 
+# https://dbus.freedesktop.org/doc/dbus-python/dbus.service.html
+#
+# Custom DBUS service for this application
 class BtPiKeyboardMouseService(dbus.service.Object):
 
     def __init__(self):
