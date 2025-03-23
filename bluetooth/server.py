@@ -39,7 +39,7 @@ class BtPiKeyboardMouseDevice:
         print("3. Configuring Device name " + BtPiKeyboardMouseDevice.MY_DEV_NAME)
         os.system("hciconfig hci0 up")
         os.system(f"hciconfig hci0 name '{BtPiKeyboardMouseDevice.MY_DEV_NAME}'")
-        os.system("hciconfig hci0 piscan") # Enable page and inquiry scan.
+        os.system("hciconfig hci0 piscan")  # Enable page and inquiry scan.
 
     def init_bluez_profile(self):
         print("4. Configuring Bluez Profile")
@@ -48,12 +48,17 @@ class BtPiKeyboardMouseDevice:
         #
         # setup profile options
         service_record = self.read_sdp_service_record()
-        opts = {"AutoConnect": True, "ServiceRecord": service_record}
+        opts = {
+            "AutoConnect": True,
+            "ServiceRecord": service_record,
+        }
         bus = dbus.SystemBus()
         manager = dbus.Interface(
             bus.get_object("org.bluez", "/org/bluez"), "org.bluez.ProfileManager1"
         )
-        manager.RegisterProfile("/org/bluez/hci0", BtPiKeyboardMouseDevice.UUID, opts)
+        manager.RegisterProfile(
+            "/org/example/pikmservice", BtPiKeyboardMouseDevice.UUID, opts
+        )
         print("6. Profile registered ")
 
         # https://www.bluetooth.com/wp-content/uploads/Files/Specification/Assigned_Numbers.html#bookmark17
@@ -119,10 +124,7 @@ class BtPiKeyboardMouseDevice:
         )
 
     def send_string(self, message):
-        try:
-            self.cinterrupt.send(bytes(message))
-        except OSError as err:
-            logging.error(err)
+        self.cinterrupt.send(bytes(message))
 
 
 # https://dbus.freedesktop.org/doc/dbus-python/dbus.service.html
@@ -174,7 +176,9 @@ if __name__ == "__main__":
 
         DBusGMainLoop(set_as_default=True)
         myservice = BtPiKeyboardMouseService()
+
         loop = GLib.MainLoop()
+        print("8. Running main loop")
         loop.run()
     except KeyboardInterrupt:
         sys.exit()
